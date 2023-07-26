@@ -1,1 +1,17 @@
-@import "fonts";
+// abstract
+@import './abstract/constants';
+@import './abstract/placeholders';
+
+// base
+@import './base/base';
+// @import './base/reset';
+
+// components
+
+@import './components/ui/inputs';
+@import './components/ui/buttons';
+@import './components/ui/checkboxes';
+
+@import './components/registration';
+@import './components/registration-form';
+

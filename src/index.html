@@ -4,6 +4,79 @@
   "title": "Registration form"
 })
 <body>
-  <h1>hello</h1>
+  <section class="registration">
+    <div class="container registration__container">
+      <div class="registration__form-wrapper">
+        <img src="./images/logo.svg" alt="Logo" class="logo registration__logo">
+        <h2 class="registration__title">
+          <span class="registration__title_highlighted">Sign Up</span> and find the best place to rest while traveling
+        </h2>
+        <form novalidate action="#" id="form" class="registration-form registration__form">
+          <div class="registration-form__row">
+            <div class="custom-input registration-form__input-line">
+              <input type="text" pattern="\S+" id="input-name" class="input input_first-name _req _name">
+              <label>First Name</label>
+              <p class="input-error"></p>
+            </div>
+            <div class="custom-input registration-form__input-line">
+              <input type="text" pattern="\S+" class="input input_second-name _req _name">
+              <label>Second Name</label>
+              <p class="input-error"></p>
+            </div>
+          </div>
+          <div class="registration-form__row">
+            <div class="custom-input countries-input registration-form__input-line close">
+              <input readonly type="text" pattern="\S+" id="input-countries" class="input input_location _req">
+              <label>Country</label>
+              <div class="countries-input-angle"></div>
+              <ul id="countries-list" class="countries-input__country-list">
+              </ul>
+              <p class="input-error"></p>
+            </div>
+            <div class="custom-input registration-form__input-line">
+              <input type="tel" id="input-phone" class="input input_phone _req _phone">
+              <label>Phone</label>
+              <p class="input-error"></p>
+            </div>
+          </div>
+          <div class="registration-form__row">
+            <div class="custom-input registration-form__input-line">
+              <input type="password" pattern="\S+" id="input-password" class="input input_password _req _passw">
+              <label>Password</label>
+              <p class="input-error"></p>
+            </div>
+            <div class="custom-input registration-form__input-line">
+              <input type="password" pattern="\S+" id="input-password2" class="input input_password-confirm _req _passw2">
+              <label>Confirm password</label>
+              <p class="input-error"></p>
+            </div>
+          </div>
+          <div class="registration-form__row">
+            <div class="custom-input registration-form__input-line">
+              <input type="text" id="input-email" class="input input_email _req _email">
+              <label>Email</label>
+              <p class="input-error"></p>
+            </div>
+            <div class="checkbox-line registration-form__agreement">
+              <label class="checkbox">
+                <input type="checkbox" value="agree" class="_req _checkbox">
+                <span></span>
+              </label>
+              <span class="registration-form__agreement-text">
+                I agree to the <a href="#" class="registration-form__agreement-link">Terms & Conditions</a>
+              </span>
+            </div>
+          </div>
+          <div class="registration-form__row">
+            <button class="button button_full registration-form__button">Sign Up</button>
+          </div>
+        </form>
+</div>
+      <div class="registration__switch-caption">
+        If you have an account, <span class="registration__switch-caption-link">Log In</span>
+      </div>
+    </div>
+  </section>
+  <script type="text/javascript" src="./js/app.min.js"></script>
 </body>
 </html>

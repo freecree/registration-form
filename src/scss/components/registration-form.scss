@@ -1,0 +1,33 @@
+.registration-form {
+
+}
+.registration-form__row {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+  @media screen and (max-width: $screen-width-md) {
+    flex-direction: column;
+  }
+}
+
+.registration-form__input-line {
+  width: 300px;
+  @media screen and (max-width: $screen-width-md) {
+    width: auto;
+  }
+}
+
+.registration-form__agreement {
+}
+
+.registration-form__agreement-text {
+  @extend %font-light;
+  font-size: 15px;
+}
+.registration-form__agreement-link {
+  @extend %text-lighted;
+  color: $color-accent;
+}
+
+
+

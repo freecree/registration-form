@@ -1,0 +1,28 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  padding: 0px;
+  margin: 0px;
+}
+
+ul {
+  list-style-type: none;
+}
+
+body {
+  @extend %font-normal;
+}
+
+.logo {
+  width: 190px;
+}
+
+.container {
+  max-width: 660px;
+  padding: 0 15px;
+  margin: 0 auto;
+}

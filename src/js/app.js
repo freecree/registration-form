@@ -1,5 +1,8 @@
-import {isWebp} from './modules/functions.js';
-isWebp();
+import {isWebp} from './modules/utils.js';
+import countriesList from './modules/countries-list.js';
+import formController from './modules/form-controller.js';
 
-console.log("Hello, Gulp");
+isWebp();
+formController();
+countriesList();
 
