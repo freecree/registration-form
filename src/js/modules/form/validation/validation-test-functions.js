@@ -1,5 +1,3 @@
-import phoneMask, {getExamplePhoneNumber} from '../phone-mask.js';
-
 function validateName(input, addErrorCb) {
   if (input.value.length <= 2) {
     addErrorCb(input, 'the name must be more than 2 characters\n');

@@ -1,18 +1,35 @@
 import {getExample} from 'awesome-phonenumber';
-let examplePhoneNumber;
 
 export default class PhoneMask {
-  constructor(input, countryCode) {
+  constructor(input, countryCode = '') {
     this.input = input;
     this.countryCode = countryCode;
     this.linkedSymbols = new Map();
     this.phoneCode = '';
+    this.examplePhoneNumber = '';
+    this.maxMaskLength = 16;
   }
 
+  _setup() {
+    this.linkedSymbols.clear();
+    this._initExamplePhoneNumber();
+    this._initLinkedSymbolsAndPhoneCode();
+    this._setInput(this.phoneCode);
+    this._setInputPlaceholder();
+  }
+
+  setCountryCode(countryCode) {
+    this.countryCode = countryCode;
+    this._setup();
+  }
+  
   _initExamplePhoneNumber() {
-    const examplePhone = getExample(this.countryCode);
-    if (!examplePhone) return;
-    this.examplePhoneNumber = examplePhone.number.international;
+    try {
+      const examplePhone = getExample(this.countryCode);
+      if (!examplePhone) return;
+      this.examplePhoneNumber = examplePhone.number.international;
+    } catch (e) {
+    }
   }
 
   _initLinkedSymbolsAndPhoneCode() {
@@ -48,23 +65,24 @@ export default class PhoneMask {
       return;
     }
     formattedInputValue = '+' + inputNumbersValue;
-    const inputLength = this.examplePhoneNumber.length;
+    const maskLength = this.examplePhoneNumber.length;
 
     this.linkedSymbols.forEach((symbol, index) => {
       if (formattedInputValue.length > index) {
         const substr1 = formattedInputValue.substring(0, index);
-        const substr2 = formattedInputValue.substring(index, inputLength - 1);
+        const substr2 = formattedInputValue.substring(index, maskLength - 1);
         formattedInputValue = substr1 + symbol + substr2;
       }
     });
+    if (!maskLength) {
+      formattedInputValue = formattedInputValue.slice(0, this.maxMaskLength);
+    }
     this._setInput(formattedInputValue);
   }
 
+
   init() {
-    this._initExamplePhoneNumber();
-    this._initLinkedSymbolsAndPhoneCode();
-    this._setInput(this.phoneCode);
-    this._setInputPlaceholder();
+    this._setup();
     this.input.addEventListener('input', this._onInput.bind(this));
   }
 }
