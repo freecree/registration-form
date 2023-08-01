@@ -29,11 +29,18 @@ export default class FormController {
       });
     }
   }
+
+  _onSubmit(e) {
+    e.preventDefault();
+    const errors = validationService(this.form, {
+      phoneMaskService: this.phoneMaskService
+    });
+  }
   
   init() {
     this._contolInputsFullness();
     this.countryService.init();
     this.phoneMaskService.init();
-    validationService(this.form);
+    this.form.addEventListener('submit', this._onSubmit.bind(this))
   }
 }

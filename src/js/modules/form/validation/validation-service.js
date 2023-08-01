@@ -1,6 +1,6 @@
-import {validateFullness, validatorsByClass} from './validation-test-functions.js';
+import {validateFullness, validatorsByClass, validatePhone} from './validation-test-functions.js';
 
-export default function validationService(form) {
+export default function validationService(form, {phoneMaskService}) {
   const errors = new Map();
   const inputs = Array.from(form.querySelectorAll('._req'));
 
@@ -21,9 +21,9 @@ export default function validationService(form) {
   }
 
   function removeErrors() {
-    errors.forEach((_, errInput) => {
-      errInput.classList.remove('_err');
-      const errorElement = errInput.parentElement.querySelector('.input-error');
+    inputs.forEach((input) => {
+      input.classList.remove('_err');
+      const errorElement = input.parentElement.querySelector('.input-error');
       if (errorElement) {
         errorElement.innerText = '';
       }
@@ -31,21 +31,23 @@ export default function validationService(form) {
     errors.clear();
   }
 
-  function onSubmit(e) {
-    e.preventDefault();
-    removeErrors();
-    
+  function validate() {
     inputs.forEach(input => {
+      validateFullness(input, addError);
       Object.keys(validatorsByClass).forEach((className) => {
-        validateFullness(input, addError);
         if (input.classList.contains(className)) {
           const validatorFunc = validatorsByClass[className];
           validatorFunc(input, addError);
         }
       });
+      if (input.classList.contains('_phone')) {
+        validatePhone(input, addError, phoneMaskService);
+      }
     });
-    appendErrors();
   }
 
-  form.addEventListener('submit', onSubmit);
+  removeErrors();
+  validate();
+  appendErrors();
+  return errors;
 }

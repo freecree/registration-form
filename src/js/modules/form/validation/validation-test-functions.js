@@ -30,25 +30,23 @@ function validateCheckbox(checkbox, addErrorCb) {
   }
 }
 
-function validatePhone(input, addErrorCb) {
-  // const example = getExamplePhoneNumber();
-  // if (example && input.value.length !== example.length) {
-  //   addErrorCb(input, 'the phone number must be in appropriate format\n');
-  // }
-}
-
 export const validatorsByClass = {
   '_name': validateName,
   '_passw': validatePassword,
   '_passw2': validatePasswordConfirm,
   '_email': validateEmail,
   '_checkbox': validateCheckbox,
-  '_phone': validatePhone
 }
 
 export function validateFullness(input, addErrorCb) {
   if (input.value.length === 0) {
     addErrorCb(input, 'Fill in the field\n');
+  }
+}
+
+export function validatePhone(input, addErrorCb, phoneMaskService) {
+  if (!phoneMaskService.isValid()) {
+    addErrorCb(input, 'the phone number must be in appropriate format\n');
   }
 }
 

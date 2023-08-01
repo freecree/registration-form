@@ -10,6 +10,16 @@ export default class PhoneMask {
     this.maxMaskLength = 16;
   }
 
+  isValid() {
+    return this.input.value.length === this.examplePhoneNumber.length
+    ? true : false;
+  }
+
+  setCountryCode(countryCode) {
+    this.countryCode = countryCode;
+    this._setup();
+  }
+
   _setup() {
     this.linkedSymbols.clear();
     this._initExamplePhoneNumber();
@@ -18,11 +28,6 @@ export default class PhoneMask {
     this._setInputPlaceholder();
   }
 
-  setCountryCode(countryCode) {
-    this.countryCode = countryCode;
-    this._setup();
-  }
-  
   _initExamplePhoneNumber() {
     try {
       const examplePhone = getExample(this.countryCode);
@@ -79,7 +84,6 @@ export default class PhoneMask {
     }
     this._setInput(formattedInputValue);
   }
-
 
   init() {
     this._setup();
